@@ -97,6 +97,11 @@ app.post('/login', (req: Request, res: Response) => {
   })
 })
 
+app.post('/logout', (req: Request, res: Response) => {
+  req.body = 'null'
+})
+
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!')
 })
