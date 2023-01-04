@@ -2,30 +2,41 @@ import express, {
   Request,
   Response,
   NextFunction
-} from 'express'
+} from 'express';
 
 const env = process.env.NODE_ENV || 'config';
-const config = require('./config/config')[env]
+const config = require('./config/config')[env];
 
 const mysql = require('mysql');
-const axios = require('axios')
-const cors = require('cors')
+const axios = require('axios');
+const cors = require('cors');
 
-const router = express.Router()
-const app = express()
-const port = 3030
+const app = express();
+const port = 3030;
 
 axios.defaults.withCredentials = true;
 
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
-}))
+}));
 
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
 }));
+
+// const signupRouter = require('./routes/signup')
+// const loginRouter = require('./routes/login')
+// const logoutRouter = require('./routes/logout')
+
+// app.use('/signup2', signupRouter)
+// app.use('/login', loginRouter)
+// app.use('/logout', logoutRouter)
+
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   res.status(404).send('Not Found');
+// });
 
 const connection = mysql.createConnection({
   host: config.host,
@@ -33,7 +44,6 @@ const connection = mysql.createConnection({
   user: config.user,
   password: config.password,
   database: config.database,
-
 })
 
 app.post('/signup2', (req: Request, res: Response) => {
