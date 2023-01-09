@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-export const config = {
+export const db = {
     'host': process.env.MYSQL_HOST,
     'port': process.env.MYSQL_PORT,
     'user': process.env.MYSQL_HOST_USER,
